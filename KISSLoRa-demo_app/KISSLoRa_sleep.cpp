@@ -1,5 +1,5 @@
 #include "KISSLoRa_sleep.h"
-#include "KISSLora_io.h"
+#include "KISSLoRa_io.h"
 
 //http://playground.arduino.cc/Learning/ArduinoSleepCode
 //http://playground.arduino.cc/Code/Timer1
