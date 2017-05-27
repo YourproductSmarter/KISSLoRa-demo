@@ -8,6 +8,7 @@ There is also a separate blue LED located close to the rotary encoder. This is a
 
 ## Connections
 The LEDs are connected to the following output pins on the microcontroller:
+
 | name | Arduino Pin Number |
 | ---- | ------------------ |
 | RGB red   | 12 |
@@ -23,10 +24,13 @@ The LEDs are connected to the following output pins on the microcontroller:
 #define LED_BLUE  4
 #define LED_LORA  8
 ```
+
 We define aliases for the pin numbers to which the LEDs are connected. This helps to make the code more readable.
 
 `pinMode(LED_RED, OUTPUT);`
+
 This line means that the pin to which the red led is connected to the microcontroller should be configured as an output.
 
 `digitalWrite(LED_RED, LOW);`
+
 When making a output pin low, it means there will be 0 volt on it. Because of the way the LEDs are wired, making the output low will switch the LED on. On the other hand, writing `HIGH` to the pin will switch the LED off.
