@@ -6,12 +6,18 @@ This repository includes example software to be used with the KISS LoRa device f
 
 ## Prerequisites
 
+### Download this repository
+
+Download the contents of this repository to your computer by clicking [here](archive/master.zip) or by going to **Clone or download->Download ZIP**. On your computer unzip the downloaded file by following the correct procedure for your operating system.
+
 ### Arduino IDE
 
 Download the latest version of the Arduino IDE from [https://www.arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software).
 
 > If your Arduino IDE's interface language is not English, you can change it using the following steps:
 > Dutch: **Bestand->Voorkeuren->Taal voor editor->Engels(Engels)**, hierna Arduino IDE opnieuw opstarten.
+
+Go to **File->Preferences** on the Settings tab, next to **Show verbose output during:**, make sure the checkbox next to **upload** is selected.
 
 ### SparkFun AVR boards
 
@@ -31,6 +37,15 @@ Go to **Sketch->Include Library->Manage Libraries**.
 Search for **TheThingsNetwork** and click on **install**.
 
 Search for **SoftPWM** and click on **install**.
+
+
+### USB Troubleshooting
+
+It is common to have problems while trying to program Arduino devices, including the KISS LoRa device. In case you experience some issues, a simple Google search will most likely help to find a solution. Some common problems and fixes are listed here:
+
+If you are using Linux, [read this](http://www.arduino.org/learning/getting-started/arduino-ide-on-linux-based-os).
+
+If you are using MAC OS, [read this](https://learn.sparkfun.com/tutorials/how-to-install-ftdi-drivers/all#yosemite).
 
 
 ## [Original firmware](KISSLoRa-demo_app)
