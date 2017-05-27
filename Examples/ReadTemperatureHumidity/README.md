@@ -24,6 +24,8 @@ After a few seconds you will most likely see one of the following errors:
 
 `the selected serial port does not exist or your board is not connected`
 
+`Connecting to programmer: .avrdude: butterfly_recv(): programmer is not responding`
+
 Follow the following procedure:
 1. Turn KISSLoRa off. 
 2. Press and hold the push button on KISSLoRa.
