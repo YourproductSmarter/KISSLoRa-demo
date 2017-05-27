@@ -14,14 +14,15 @@ Download the contents of this repository to your computer by clicking [here](arc
 
 Download the latest version of the Arduino IDE from [https://www.arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software).
 
-> If your Arduino IDE's interface language is not English, you can change it using the following steps:
+> If your Arduino IDE's interface language is not English, you can change it using the following steps:<br />
 > Dutch: **Bestand->Voorkeuren->Taal voor editor->Engels(Engels)**, hierna Arduino IDE opnieuw opstarten.
 
 Go to **File->Preferences** on the Settings tab, next to **Show verbose output during:**, make sure the checkbox next to **upload** is selected.
 
 ### SparkFun AVR boards
 
-In the Arduino IDE go to **File->Preferences->Additional Boards Manager URLs** and add `https://raw.githubusercontent.com/sparkfun/Arduino_Boards/master/IDE_Board_Manager/package_sparkfun_index.json`.
+In the Arduino IDE go to **File->Preferences->Additional Boards Manager URLs** and add:
+`https://raw.githubusercontent.com/sparkfun/Arduino_Boards/master/IDE_Board_Manager/package_sparkfun_index.json`
 
 Go to **Tools->Board->Boards Manager**, search for **SparkFun AVR Boards** and click on **install**.
 
