@@ -41,6 +41,8 @@ Search for **SoftPWM** and click on **install**.
 
 ## Uploading Firmware
 
+> The serial monitor must be closed before uploading code to the device.
+
 1. Switch the KISS LoRa device off.
 2. Plug it into your computer using a micro USB cable.
 3. In the Arduino IDE make sure the correct **Tools->Board** (SparkFun Pro Micro) and **Tools->Processor** (ATmega 32U4, 8MHz) are selected.
