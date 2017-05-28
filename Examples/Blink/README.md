@@ -24,6 +24,7 @@ The LEDs are connected to the following output pins on the microcontroller:
 #define LED_BLUE  4
 #define LED_LORA  8
 ```
+
 We define aliases for the pin numbers to which the LEDs are connected. This helps to make the code more readable.
 
 `pinMode(LED_RED, OUTPUT);`
