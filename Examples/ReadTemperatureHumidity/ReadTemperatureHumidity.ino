@@ -24,14 +24,39 @@
   SOFTWARE.
 */
 
+#include "SparkFun_Si7021_Breakout_Library.h"
 
-#define LED PD6
+Weather sensor;
 
 void setup() {
-  pinMode(LED, OUTPUT);
+  Serial.begin(9600);
 
+  // Wait a maximum of 10s for Serial Monitor
+  while (!Serial && millis() < 10000);
+
+  Serial.println("Starting Temperature & Humidity example");
+
+  //Initialize the I2C Si7021 sensor
+  sensor.begin();
 }
 
 void loop() {
-  
+  // Measure Relative Humidity from the Si7021
+  float humidity = sensor.getRH();
+
+  // Measure Temperature from the Si7021
+  float tempf = sensor.getTemp();
+  // Temperature is measured every time RH is requested.
+  // It is faster, therefore, to read it from previous RH
+  // measurement with getTemp() instead with readTemp()
+
+  Serial.print("Temp: ");
+  Serial.print(tempf);
+  Serial.print("*C, ");
+
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.println("%RH");
+
+  delay(1000);
 }
