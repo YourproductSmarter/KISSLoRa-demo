@@ -26,7 +26,7 @@
 
 #define LED_RED   12
 #define LED_GREEN 6
-#define LED_BLUE  4
+#define LED_BLUE  11
 #define LED_LORA  8
 
 // the setup function runs once when you press reset or power the board
@@ -39,11 +39,11 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
-  digitalWrite(LED_RED, LOW);
-  delay(500);                       // wait for a second
-  digitalWrite(LED_RED, HIGH);
+  digitalWrite(LED_RED, LOW);   //switch red LED on
+  delay(500);                   //delay 500 milliseconds
+  digitalWrite(LED_RED, HIGH);  //switch red LED off
   digitalWrite(LED_GREEN, LOW);
-  delay(500);                       // wait for a second
+  delay(500);
   digitalWrite(LED_GREEN, HIGH);
   digitalWrite(LED_BLUE, LOW);
   delay(500);
