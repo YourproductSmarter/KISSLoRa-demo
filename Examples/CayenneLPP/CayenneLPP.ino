@@ -30,8 +30,8 @@
 #include "SparkFun_Si7021_Breakout_Library.h"
 
 // Set your AppEUI and AppKey
-const char *appEui = "70B3D57EF0003304";
-const char *appKey = "B0BAEA959AD28C8BCEEE5F161E07C045";
+const char *appEui = "0000000000000000";
+const char *appKey = "00000000000000000000000000000000";
 
 #define loraSerial Serial1
 #define debugSerial Serial
