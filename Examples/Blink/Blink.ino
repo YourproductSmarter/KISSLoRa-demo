@@ -1,5 +1,5 @@
 /*
-  Blink - consecutively blink all LEDs on the KOSS LoRa board
+  Blink.ino - consecutively blink all LEDs on the KISS LoRa board
   
   The MIT License (MIT)
   
