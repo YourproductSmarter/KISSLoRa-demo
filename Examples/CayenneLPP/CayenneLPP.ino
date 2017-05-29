@@ -60,7 +60,7 @@ void sendData(uint8_t port)
   getAcceleration(&x, &y, &z);
   lpp.addAccelerometer(6, x, y, z);
   
-  ttn.sendBytes(lpp.getBuffer(), lpp.getSize());
+  ttn.sendBytes(lpp.getBuffer(), lpp.getSize(), 2, false, getSF());
 }
 
 uint8_t getButtonPressed()

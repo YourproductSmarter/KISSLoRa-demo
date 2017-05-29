@@ -41,7 +41,8 @@ void setup() {
   setAccelerometerRange(ACC_RANGE);     
 }
 
-void loop() {float x,y,z;
+void loop() {
+  float x,y,z;
   getAcceleration(&x, &y, &z);
 
   Serial.print("Acceleration:\tx=");

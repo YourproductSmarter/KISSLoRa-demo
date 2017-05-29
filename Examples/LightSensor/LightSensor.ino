@@ -36,7 +36,7 @@ void setup() {
 }
 
 void loop() {
-  Serial.print("Ambient ligh: ");
+  Serial.print("Ambient light: ");
   Serial.print(get_lux_value());
   Serial.println("lux");
   delay(1000);

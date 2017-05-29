@@ -48,7 +48,7 @@ void loop()
   byte payload[1];
   payload[0] = getRotaryPosition();
 
-  // Send it off on port 2
+  // Send the payload, on port 2, not asking for an ack, using the random SF
   ttn.sendBytes(payload, sizeof(payload), 2, false, getSF());
 
   delay(10000);

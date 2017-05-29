@@ -74,6 +74,8 @@ In the Bootloader directory you will find the hex file for the bootloader that r
 
 The Schematics directory contains the electronic design of the board. It specifically shows how everything is connected. This is useful to have when writing firmware for the KISS LoRa device, to know on which pins the sensors are connected.
 
+The schematic uses the pin names and numbers from the [datasheet of the ATmega32u4](Schematics/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf). When programming this board from within Arduino IDE, we use the Arduino pin names and numbers. See the [PIN_MAPPING](Schematics/PIN_MAPPING.md) document for the translation between these pin numbers and names.
+
 ## [Examples](Examples)
 
 In the Examples directory you will find example firmware files to read the sensors on the board. Have a look at the README in each subdirectory to see an explanation of each example.
