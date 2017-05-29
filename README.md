@@ -1,6 +1,6 @@
 # KISS LoRa
 
-This repository includes example software to be used with the KISS LoRa device from the E&A fair.
+This repository includes example software to be used with the KISS LoRa gadget from the E&A fair.
 
 ![alt text](KISSLoRa.png)
 
