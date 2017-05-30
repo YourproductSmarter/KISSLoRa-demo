@@ -21,6 +21,8 @@ Go to **File->Preferences** on the Settings tab, next to **Show verbose output d
 
 ### SparkFun AVR boards
 
+Install the USB drivers for the SparkFun boards, following the steps [for Windows](https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/installing-windows) or [for Linux and Mac](https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/installing-mac--linux).
+
 In the Arduino IDE go to **File->Preferences->Additional Boards Manager URLs** and add:
 `https://raw.githubusercontent.com/sparkfun/Arduino_Boards/master/IDE_Board_Manager/package_sparkfun_index.json`
 
