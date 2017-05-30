@@ -1,39 +1,83 @@
-Building KISSLoRa-demo_app:
+# KISS LoRa
 
-Tip: If your interface language is not English you can change it using the following steps:
-Dutch: Bestand->Voorkeuren->Taal voor editor->Engels(Engels) hierna Arduino IDE opnieuw opstarten.
+This repository includes example software to be used with the KISS LoRa gadget from the E&A fair.
 
-1) Go to https://www.arduino.cc/en/Main/Software and download the latest Arduino IDE installer*. 
-2) Run the installer.
-3) Open the sketch KISSLoRa-demo_app/KISSLoRa-demo_app.ino
-4) Go to File->Preferences->Additional Boards Manager URLs. Add the following URL and click OK: 
-https://raw.githubusercontent.com/sparkfun/Arduino_Boards/master/IDE_Board_Manager/package_sparkfun_index.json
-5) Download the following board package via Tools->Board->Boards Manager: "SparkFun AVR Boards by SparkFun Electronics version 1.1.5". Close window.
-6) Select the following board via Tools->Board: "SparkFun Pro Micro".
-7) Select the following processor via Tools->Processor: "ATmega32U4 (3.3V, 8MHz)".
-8) Download the following libraries via Sketch->Include Library->Manage Libraries: "TheThingsNetwork by The Things Network Version 2.5.2" and "SoftPWM 1.0.0". Close window.
-9) Click verify. If there are no errors in the build output you can continue with "Programming firmware".
+![alt text](KISSLoRa.png)
 
-*Tested on Windows PC with Arduino IDE version 1.8.2.
+## Prerequisites
 
-Programming firmware:
+### Download this repository
 
-1) Change preferences: File->Preferences->Settings(tab)->Show verbose output during:->upload(check checkbox). You only have to do this once.
-2) Turn KISSLoRa off and connect it to the PC using a micro-USB cable. 
-3) Press and hold the push button on KISSLoRa.
-4) Click upload in the Arduino IDE.
-5) When you see "PORTS {} / {} => {}" printed in the output window turn KISSLoRa on.
-6) When the programming starts you can release the push button.
+Download the contents of this repository to your computer by clicking [here](archive/master.zip) or by going to **Clone or download->Download ZIP**. On your computer unzip the downloaded file by following the correct procedure for your operating system.
 
-Create your own app:
+### Arduino IDE
 
-The easiest way to create your own app is to change an existing app. Apps start at: "switch(app)" (line 282). 
-Choose the app you want to change and make your changes accordingly.
+Download the latest version of the Arduino IDE from [https://www.arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software).
 
-Notes:
-1) The demo code uses about 98% of the flash, so you may want to comment out apps to save some space.
-2) You can enable warnings: File->Preferences->Compiler warnings: All. Code should compile with only a few warnings.
-3) You can enable line numbers: File->Preferences->Display line numbers
-4) You can use SPI. Unfortunately, due to lack of pins, the SPI_SS line uses the same pin as the RXLED of the Arduino Leonardo. So either don't use USB serial during SPI or change your USB serial library.
-5) During sleep mode the timer used by millis() is not updated, you may try estMillis() in stead, but this function is untested.
+> If your Arduino IDE's interface language is not English, you can change it using the following steps:<br />
+> Dutch: **Bestand->Voorkeuren->Taal voor editor->Engels(Engels)**, hierna Arduino IDE opnieuw opstarten.
 
+Go to **File->Preferences** on the Settings tab, next to **Show verbose output during:**, make sure the checkbox next to **upload** is selected.
+
+### SparkFun AVR boards
+
+Install the USB drivers for the SparkFun boards, following the steps [for Windows](https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/installing-windows) or [for Linux and Mac](https://learn.sparkfun.com/tutorials/pro-micro--fio-v3-hookup-guide/installing-mac--linux).
+
+In the Arduino IDE go to **File->Preferences->Additional Boards Manager URLs** and add:
+`https://raw.githubusercontent.com/sparkfun/Arduino_Boards/master/IDE_Board_Manager/package_sparkfun_index.json`
+
+Go to **Tools->Board->Boards Manager**, search for **SparkFun AVR Boards** and click on **install**.
+
+Go to **Tools->Board** and select **SparkFun Pro Micro**.
+
+Go to **Tools->Processor** and select **ATmega32U4 (3.3V, 8MHz)**.
+
+
+### The Things Network and SoftPWM libraries
+
+Go to **Sketch->Include Library->Manage Libraries**.
+
+Search for **TheThingsNetwork** and click on **install**.
+
+Search for **SoftPWM** and click on **install**.
+
+## Uploading Firmware
+
+> The serial monitor must be closed before uploading code to the device.
+
+1. Switch the KISS LoRa device off.
+2. Plug it into your computer using a micro USB cable.
+3. In the Arduino IDE make sure the correct **Tools->Board** (SparkFun Pro Micro) and **Tools->Processor** (ATmega 32U4, 8MHz) are selected.
+4. Switch the device on and make sure the correct **Tools->Port** is selected.
+5. Switch the device off again.
+6. Press and hold the **Push Button** on the kiss device.
+6. In the Arduino IDE, choose **Sketch->Upload**.
+7. As soon as you see `PORTS {} / {} => {}` printed in the output window turn KISSLoRa on.
+8. When the upload process continue past showing `PORTS {} / {} => {}`, you can release the push button.
+
+### USB Troubleshooting
+
+It is common to have problems while trying to program Arduino devices, including the KISS LoRa device. In case you experience some issues, a simple Google search will most likely help to find a solution. Some common problems and fixes are listed here:
+
+If you are using Linux, [read this](http://www.arduino.org/learning/getting-started/arduino-ide-on-linux-based-os).
+
+If you are using MAC OS, [read this](https://learn.sparkfun.com/tutorials/how-to-install-ftdi-drivers/all#yosemite).
+
+
+## [Original firmware](KISSLoRa-demo_app)
+
+In the directory **KISSLoRa-demo_app** you will find the original firmware that was on the KISS LoRa device when you received it. If you ever want to flash this firmware back onto the device, have a look at the [README.md in this directory](KISSLoRa-demo_app/README.md).
+
+## [Bootloader](Bootloader)
+
+In the Bootloader directory you will find the hex file for the bootloader that runs on your KISS LoRa device. In the most cases you will never need this, but if you manage to brick your device, this will be useful to recover.
+
+## [Schematics](Schematics)
+
+The Schematics directory contains the electronic design of the board. It specifically shows how everything is connected. This is useful to have when writing firmware for the KISS LoRa device, to know on which pins the sensors are connected.
+
+The schematic uses the pin names and numbers from the [datasheet of the ATmega32u4](Schematics/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf). When programming this board from within Arduino IDE, we use the Arduino pin names and numbers. See the [PIN_MAPPING](Schematics/PIN_MAPPING.md) document for the translation between these pin numbers and names.
+
+## [Examples](Examples)
+
+In the Examples directory you will find example firmware files to read the sensors on the board. Have a look at the README in each subdirectory to see an explanation of each example.
