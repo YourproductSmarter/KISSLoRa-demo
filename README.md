@@ -8,7 +8,7 @@ This repository includes example software to be used with the KISS LoRa gadget f
 
 ### Download this repository
 
-Download the contents of this repository to your computer by clicking [here](archive/master.zip) or by going to **Clone or download->Download ZIP**. On your computer unzip the downloaded file by following the correct procedure for your operating system.
+Download the contents of this repository to your computer by clicking [here](https://github.com/TheThingsIndustries/KISSLoRa-demo/archive/master.zip) or by clicking on the green button on top of this page: **Clone or download->Download ZIP**. On your computer unzip the downloaded file by following the correct procedure for your operating system.
 
 ### Arduino IDE
 
@@ -50,7 +50,7 @@ Search for **SoftPWM** and click on **install**.
 3. In the Arduino IDE make sure the correct **Tools->Board** (SparkFun Pro Micro) and **Tools->Processor** (ATmega 32U4, 8MHz) are selected.
 4. Switch the device on and make sure the correct **Tools->Port** is selected.
 5. Switch the device off again.
-6. Press and hold the **Push Button** on the kiss device.
+6. Press and hold the **Push Button** on the Kiss device.
 6. In the Arduino IDE, choose **Sketch->Upload**.
 7. As soon as you see `PORTS {} / {} => {}` printed in the output window turn KISSLoRa on.
 8. When the upload process continue past showing `PORTS {} / {} => {}`, you can release the push button.
@@ -68,6 +68,11 @@ If you are using MAC OS, [read this](https://learn.sparkfun.com/tutorials/how-to
 
 In the directory **KISSLoRa-demo_app** you will find the original firmware that was on the KISS LoRa device when you received it. If you ever want to flash this firmware back onto the device, have a look at the [README.md in this directory](KISSLoRa-demo_app/README.md).
 
+
+## [Examples](Examples)
+
+In the Examples directory you will find example firmware files to read the sensors on the board. Have a look at the README in each subdirectory to see an explanation of each example.
+
 ## [Bootloader](Bootloader)
 
 In the Bootloader directory you will find the hex file for the bootloader that runs on your KISS LoRa device. In the most cases you will never need this, but if you manage to brick your device, this will be useful to recover.
@@ -77,7 +82,3 @@ In the Bootloader directory you will find the hex file for the bootloader that r
 The Schematics directory contains the electronic design of the board. It specifically shows how everything is connected. This is useful to have when writing firmware for the KISS LoRa device, to know on which pins the sensors are connected.
 
 The schematic uses the pin names and numbers from the [datasheet of the ATmega32u4](Schematics/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf). When programming this board from within Arduino IDE, we use the Arduino pin names and numbers. See the [PIN_MAPPING](Schematics/PIN_MAPPING.md) document for the translation between these pin numbers and names.
-
-## [Examples](Examples)
-
-In the Examples directory you will find example firmware files to read the sensors on the board. Have a look at the README in each subdirectory to see an explanation of each example.
