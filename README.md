@@ -41,6 +41,19 @@ Search for **TheThingsNetwork** and click on **install**.
 
 Search for **SoftPWM** and click on **install**.
 
+
+### The Things Network Console
+
+Applications and devices can be managed via [The Things Network Console](https://console.thethingsnetwork.org/). In the Console you can find your application which is registered via the Commissioning Terminal. 
+
+When uploading the new sketches, you need the `appEui` and `appKey`, you can find both in the Kiss-LoRa application which is registered under your personal account. Go to:
+* [The Things Network Console](https://console.thethingsnetwork.org/)
+* Click on *Applications* and select the `Kiss LoRa` application
+* Click on *Devices* and select your `Kiss LoRa` device
+* Go all the way to the bottom, under the `EXAMPLE CODE` you can find the keys you need later on
+
+
+
 ## Uploading Firmware
 
 > The serial monitor must be closed before uploading code to the device.
