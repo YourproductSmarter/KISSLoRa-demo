@@ -81,3 +81,7 @@ The schematic uses the pin names and numbers from the [datasheet of the ATmega32
 ## [Examples](Examples)
 
 In the Examples directory you will find example firmware files to read the sensors on the board. Have a look at the README in each subdirectory to see an explanation of each example.
+
+## [Veelgestelde vragen / FAQ](faq.pdf)
+
+Klik op de titel om te navigeren naar de veelgestelde vragen file.
