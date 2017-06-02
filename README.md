@@ -1,6 +1,12 @@
 # KISS LoRa
 
-This repository includes example software to be used with the KISS LoRa gadget from the E&A fair.
+> For common questions about the KISS gadget, see [the FAQ](faq.pdf).
+> 
+> Voor veelgestelde vragen over de KISS gadget, zie [de FAQ](faq.pdf).
+
+
+This repository contains example firmware to customise the KISS LoRa gadget from the E&A fair. If you do not want to customise your KISS gadget, but just want to get it to work with the original firmware, please see [the FAQ](faq.pdf) or the [Commission at Home](COMMISSION_AT_HOME.md) document.
+
 
 ![alt text](KISSLoRa.png)
 
@@ -95,7 +101,3 @@ In the Bootloader directory you will find the hex file for the bootloader that r
 The Schematics directory contains the electronic design of the board. It specifically shows how everything is connected. This is useful to have when writing firmware for the KISS LoRa device, to know on which pins the sensors are connected.
 
 The schematic uses the pin names and numbers from the [datasheet of the ATmega32u4](Schematics/Atmel-7766-8-bit-AVR-ATmega16U4-32U4_Datasheet.pdf). When programming this board from within Arduino IDE, we use the Arduino pin names and numbers. See the [PIN_MAPPING](Schematics/PIN_MAPPING.md) document for the translation between these pin numbers and names.
-
-## [Veelgestelde vragen / FAQ](faq.pdf)
-
-Klik op de titel om te navigeren naar de veelgestelde vragen file.
