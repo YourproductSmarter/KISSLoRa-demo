@@ -57,9 +57,6 @@ void setup()
   debugSerial.println("-- JOIN");
   ttn.join(appEui, appKey);
 
-  // Seed the random function
-  seedRandomFunction();
-
   //start temperature and humidity sensor
   sensor.begin();
 }
@@ -86,7 +83,7 @@ void sendData(uint8_t port)
   getAcceleration(&x, &y, &z);
   lpp.addAccelerometer(6, x, y, z);
   
-  ttn.sendBytes(lpp.getBuffer(), lpp.getSize(), 2, false, getSF());
+  ttn.sendBytes(lpp.getBuffer(), lpp.getSize(), port);
 }
 
 uint8_t getButtonPressed()
@@ -141,60 +138,6 @@ uint16_t get_lux_value()
   return (uint16_t)lux;                        //Return Lux value as value without decimal
 }
 
-void seedRandomFunction()
-{
-  char hwEui_char_array[16+1];//16 chars + \0
-  uint16_t hwEui_16_bits = 0;
-  
-  ttn.getHardwareEui(hwEui_char_array, 17); //read HWEUI from module
-  hwEui_16_bits = ascii_hex_to_nibble(hwEui_char_array[12]);
-  hwEui_16_bits |= ascii_hex_to_nibble(hwEui_char_array[13]) << 4;
-  hwEui_16_bits |= ascii_hex_to_nibble(hwEui_char_array[14]) << 8;
-  hwEui_16_bits |= ascii_hex_to_nibble(hwEui_char_array[15]) << 12;
-  uint16_t seed = hwEui_16_bits;
-  randomSeed(seed);
-}
-
-uint8_t getSF()
-{
-  uint8_t txsf = 7;
-  uint8_t rnd = (uint8_t)random(1, 64);
-  
-  if (rnd == 1 ) {
-    txsf = 12;  // SF12
-  }
-  else if (rnd > 1  && rnd < 4  ) {
-    txsf = 11;  // SF11
-  }
-  else if (rnd > 3  && rnd < 8  ) {
-    txsf = 10;  // SF10
-  }
-  else if (rnd > 7  && rnd < 16 ) {
-    txsf = 9;  // SF9
-  }
-  else if (rnd > 15 && rnd < 32 ) {
-    txsf = 8;  // SF8
-  }
-  else {
-    txsf = 7;  // SF7
-  }
-}
-
-//This function is used to convert ascii-hex string to integer
-static uint8_t ascii_hex_to_nibble(char ascii_hex)
-{  
-  uint8_t return_value=0;
-
-  if((ascii_hex >= 'A') && (ascii_hex <= 'F'))
-  {
-    return_value |= (ascii_hex - ('A' - 10));
-  }
-  else if((ascii_hex >= '0') && (ascii_hex <= '9'))
-  {
-    return_value |= (ascii_hex - '0');
-  }
-  return return_value;
-}
 //Write one register to the acceleromter
 void writeAccelerometer(unsigned char REG_ADDRESS, unsigned char DATA)
 {
