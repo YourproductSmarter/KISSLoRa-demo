@@ -68,6 +68,9 @@
 #define COMMISSIONING_MODE  1
 #define APPS_STATE          2
 
+// The number of join retries. Set to -1 if you want to retry indefinatly.
+static const int8_t RETRIES = 10;
+
 //TheThingsNetwork anonymous config
 static const char *devAddr = "26011F0F";
 static const char *nwkSKey = "ADAFF80790E39125AD12F170768A6A97";
@@ -78,7 +81,7 @@ static const char *appSKey = "B98AEF49D4D819536FDD511544FCC49B";
 static const bool OVERRIDE = false;
 static const char *appEUI = "";
 static const char *appKey = ""; 
- 
+
 #define freqPlan TTN_FP_EU868
 
 typedef struct
@@ -233,7 +236,7 @@ int main(void)
     }
     if(serialDataIn.startsWith("rejoin"))                               //rejoins LoRa network with new keys (i.e. reboot)
     {
-      joined_network = ttn.join();         //Join TTN network and show progress on via serial
+      joined_network = ttn.join(RETRIES, 10000);         //Join TTN network and show progress on via serial
       if (joined_network) {
         usbserial.print("ack\n");
         current_state = APPS_STATE;
@@ -260,12 +263,14 @@ int main(void)
   if (!joined_network) {
     char appEui[17];
     ttn.getAppEui(appEui, sizeof(appEui));
-   if (OVERRIDE) {
+
+    if (OVERRIDE) {
+
       ttn.join(appEUI, appKey);
     } else if (strcmp(appEui, "0000000000000000") == 0) {
       ttn.personalize(devAddr, nwkSKey, appSKey);
     } else {
-      ttn.join();
+      ttn.join(RETRIES, 10000);
     }
     joined_network = 1;
   }
