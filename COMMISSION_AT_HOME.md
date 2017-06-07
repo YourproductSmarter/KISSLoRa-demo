@@ -168,5 +168,6 @@ We recommend you to use the [CayenneLPP example](Examples/CayenneLPP) in this re
 If you really want to see the graphs from the fair, you can follow the following steps:
 * Go to the [TTN Console](https://console.thethingsnetwork.org/), choose Applications, choose the application on which your KISS LoRa device is registered. At the top right, go to **Integrations**.
 * You should see a **Data Storage** integration in the list. If you don't, go to **add integration** and click on **Data Storage** to add it.
-* If data storage is enabled, you can go to `https://commissioning.thethingsnetwork.org/data/<your-application-id>` (replace the last part with the application ID your KISS gadget is registered on). You should now see some graphs, as long as your KISS gadget is sending data.
+* At the top right, choose **Payload Formats**. Choose Payload Format **Custom**, choose **decoder**, copy the code from [here](https://raw.githubusercontent.com/YourproductSmarter/KISSLoRa-payload_decoder/master/KISSLoRa_payload_decoder.js) into the code box. Copy `2FF308A628FF03416E6E` and paste it into the **Payload** box. Click on **Test** and then on **Save payload functions**.
+* Go to `https://commissioning.thethingsnetwork.org/data/<your-application-id>` (replace the last part with the application ID your KISS gadget is registered on). You should now see some graphs, as long as your KISS gadget is sending data.
 * We do not provide support for these graphs. If it does not work, please use the [CayenneLPP example](Examples/CayenneLPP).
