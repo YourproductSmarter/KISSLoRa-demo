@@ -159,3 +159,14 @@ This most likely means that you do not have coverage of The Things Network.
 
 **A:**
 Make sure you copied the keys correctly from the console into the **KISSLoRa-demo_app.ino** sketch before uploading it to the KISS LoRa gadget. Also make sure you set `static const bool OVERRIDE = true;`.
+
+**Q: At he E&A fair people's data was shown on nice graphs. How do I get that?**
+
+**A:**
+We recommend you to use the [CayenneLPP example](Examples/CayenneLPP) in this repository to set up your own dashboard.
+
+If you really want to see the graphs from the fair, you can follow the following steps:
+* Go to the [TTN Console](https://console.thethingsnetwork.org/), choose Applications, choose the application on which your KISS LoRa device is registered. At the top right, go to **Integrations**.
+* You should see a **Data Storage** integration in the list. If you don't, go to **add integration** and click on **Data Storage** to add it.
+* If data storage is enabled, you can go to `https://commissioning.thethingsnetwork.org/data/<your-application-id>` (replace the last part with the application ID your KISS gadget is registered on). You should now see some graphs, as long as your KISS gadget is sending data.
+* We do not provide support for these graphs. If it does not work, please use the [CayenneLPP example](Examples/CayenneLPP).
