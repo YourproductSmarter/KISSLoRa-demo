@@ -4,7 +4,8 @@ During the E&A fair we had a couple of commissioning stations standing around wh
 
 ## Prerequisites
 
-* Follow the steps in the [main README](https://github.com/TheThingsIndustries/KISSLoRa-demo/blob/master/README.md) to install the latest version of the Arduino IDE.
+Make sure you did everything written under prerequisites in the [main README](https://github.com/YourproductSmarter/KISSLoRa-demo#prerequisites).
+* Follow the steps in the [main README](https://github.com/YourproductSmarter/KISSLoRa-demo/blob/master/README.md) to install the latest version of the Arduino IDE.
 * Also install the USB drivers, SparkFun AVR boards, TheThingsNetwork library and the SoftPWM library.
 * [A TTN account](https://account.thethingsnetwork.org/)
 
