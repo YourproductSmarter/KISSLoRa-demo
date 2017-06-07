@@ -71,16 +71,12 @@
 // The number of join retries. Set to -1 if you want to retry indefinatly.
 static const int8_t RETRIES = 10;
 
-//TheThingsNetwork anonymous config
-static const char *devAddr = "26011F0F";
-static const char *nwkSKey = "ADAFF80790E39125AD12F170768A6A97";
-static const char *appSKey = "B98AEF49D4D819536FDD511544FCC49B";
-
-// set this to true if you want to override the keys that were set during the commissioning at the E&A fair
-// also set the appEUI and appKey which you can find in https://console.thethingsnetwork.org
+// Set this to true if you want to override the keys that were set during commissioning at the E&A fair
+// or if you did not commission your gadget at the fair.
+// Also set the appEUI and appKey which you can find on https://console.thethingsnetwork.org
 static const bool OVERRIDE = false;
-static const char *appEUI = "";
-static const char *appKey = ""; 
+static const char *appEUI = "70B3D57EF0003A0E";
+static const char *appKey = "4A9A507DF8EFD742BB07192B29EF8568";
 
 #define freqPlan TTN_FP_EU868
 
@@ -264,11 +260,13 @@ int main(void)
     char appEui[17];
     ttn.getAppEui(appEui, sizeof(appEui));
 
-    if (OVERRIDE) {
-
-      ttn.join(appEUI, appKey);
-    } else if (strcmp(appEui, "0000000000000000") == 0) {
-      ttn.personalize(devAddr, nwkSKey, appSKey);
+    /*
+     * If the appEui is 0's, the device is not commissioned.
+     * Then use the keys defined at the top of this sketch.
+     * Otherwise join using the keys programmed during commissioning.
+     */
+    if (OVERRIDE || strcmp(appEui, "0000000000000000") == 0) {
+      ttn.join(appEUI, appKey, RETRIES, 10000);
     } else {
       ttn.join(RETRIES, 10000);
     }
