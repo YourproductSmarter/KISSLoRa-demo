@@ -38,7 +38,7 @@ Copy the 16 HEX characters following `EUI:`. We will use this to register a new 
 
 ## Original Firmware
 
-Open the **KISSLoRa-demo_app.ino** from your local downloaded copy of this repository. At the top of this sketch, around line 77, you should see a block of code looking like this:
+Open the [**KISSLoRa-demo_app.ino**](https://github.com/YourproductSmarter/KISSLoRa-demo/tree/master/KISSLoRa-demo_app) from your local downloaded copy of this repository. At the top of this sketch, around line 77, you should see a block of code looking like this:
 ```
 static const bool OVERRIDE = false;
 static const char *appEUI = "70B3D57EF0003A0E";
