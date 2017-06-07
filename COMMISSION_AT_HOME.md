@@ -5,13 +5,13 @@ During the E&A fair we had a couple of commissioning stations standing around wh
 ## Prerequisites
 
 Make sure you did everything written under prerequisites in the [main README](https://github.com/YourproductSmarter/KISSLoRa-demo#prerequisites).
-* Follow the steps in the [main README](https://github.com/YourproductSmarter/KISSLoRa-demo/blob/master/README.md) to install the latest version of the Arduino IDE.
+* Install the latest version of the Arduino IDE.
 * Also install the USB drivers, SparkFun AVR boards, TheThingsNetwork library and the SoftPWM library.
 * [A TTN account](https://account.thethingsnetwork.org/)
 
 ## Device info
 
-In the Arduino IDE, go to **File->Examples->TheThingsNetwork->DeviceInfo**. This will open the Device Info example code. On line 7 replace `REPLACE_ME` by `TTN_FP_EU868`. Following the steps in the main readme, **upload** this firmware to the KISS gadget. After uploading the code, got to **Tools->Serial Monitor**. At the bottom of the newly opened serial monitor, change the baudrate to *9600 baud*.
+In the Arduino IDE, go to **File->Examples->TheThingsNetwork->DeviceInfo**. This will open the Device Info example code. On line 7 replace `REPLACE_ME` by `TTN_FP_EU868`. Following the steps in the [main readme](https://github.com/YourproductSmarter/KISSLoRa-demo#uploading-firmware) to **upload** this firmware to the KISS gadget. After uploading the code, got to **Tools->Serial Monitor**. At the bottom of the newly opened serial monitor, change the baudrate to *9600 baud*.
 
 Copy the 16 HEX characters following `EUI:`. We will use this to register a new device on [The Things Network Console](https://console.thethingsnetwork.org/).
 
