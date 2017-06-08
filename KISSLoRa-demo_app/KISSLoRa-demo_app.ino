@@ -69,7 +69,7 @@
 #define APPS_STATE          2
 
 // The number of join retries. Set to -1 if you want to retry indefinatly.
-static const int8_t RETRIES = 10;
+static const int8_t RETRIES = 1;
 
 // Set this to true if you want to override the keys that were set during commissioning at the E&A fair
 // or if you did not commission your gadget at the fair.
@@ -151,9 +151,8 @@ int main(void)
 	loraSerial.begin(57600);	//RN2483 needs 57600 baud rate  
 	usbserial.begin(9600);
 
-
-  //Wait a maximum of 10s for serial to receive data, if no cable is connected don't wait
-	while (!usbserial.available() && millis() < 10000 && USB_CABLE_CONNECTED) {
+  //Wait a maximum of 5s for serial to receive data, if no cable is connected don't wait
+	while (!usbserial.available() && millis() < 5000 && USB_CABLE_CONNECTED) {
     set_rgb_led(0,0,255);
 	  delay(250);
     set_rgb_led(0,0,0);
@@ -187,91 +186,27 @@ int main(void)
   //Always start with Unknown mode (8sec)
   current_state = UNKNOWN_MODE;
 
-  String serialDataIn;
-
-  //enter commissioning mode when serial data from usb is available and stay until commissioning is done(join succesful) or terminated(usb cable removed)
-  while(usbserial.available() || current_state == COMMISSIONING_MODE) 
+  set_rgb_led(80,80,0);
+  
+  //join network
+  char appEui[17];
+  ttn.getAppEui(appEui, sizeof(appEui));
+  
+  /*
+  * If the appEui is 0's, the device is not commissioned.
+  * Then use the keys defined at the top of this sketch.
+  * Otherwise join using the keys programmed during commissioning.
+  */
+  if (OVERRIDE || strcmp(appEui, "0000000000000000") == 0) 
   {
-  
-    current_state = COMMISSIONING_MODE;
-    
-    serialDataIn = usbserial.readStringUntil('\n');                     //read incoming data
-    if(serialDataIn.startsWith("getdeveui"))                            //gets DEV eui
-    {
-      char hwEui[16+1];                                                 //16 chars + \0
-      ttn.getHardwareEui(hwEui, sizeof(hwEui));                         //read HWEUI from module
-      usbserial.print("deveui:" + (String)hwEui + '\n');
-    }
-    if(serialDataIn.startsWith("setappeui:"))                           //sets new app eui AND APP KEY in LoRa module
-    {
-      String newAppEuiString = serialDataIn.substring(10,26);
-      String newAppKeyString = serialDataIn.substring(37,69);
-      char const*newAppEui = newAppEuiString.c_str();
-      char const*newAppKey = newAppKeyString.c_str();
-      //program new appeui and appkey in LoRa module
-      if (ttn.provision(newAppEui, newAppKey)) {
-        usbserial.print("appeuiset:" + (String)newAppEui + ",appkeyset:" + (String)newAppKey + "\n");
-      } else {
-        usbserial.print(F("error:invalid keys\n"));
-      }
-    }
-    if(serialDataIn.startsWith("setrgb:"))                              //sets colour of RGB led
-    {
-      String redString = serialDataIn.substring(7,9);                   //get colour values (HEX)
-      String greenString = serialDataIn.substring(9,11);
-      String blueString = serialDataIn.substring(11,13);
-      int redInt = (int)strtol(&redString[0],NULL,16);                  //convert and invert to integer value 0-255 (DEC)
-      int greenInt = (int)strtol(&greenString[0],NULL,16);
-      int blueInt = (int)strtol(&blueString[0],NULL,16);
-      set_rgb_led(redInt,greenInt,blueInt); 
-      usbserial.print("rgbset:");
-      usbserial.print(redString);
-      usbserial.print(greenString);
-      usbserial.print(blueString);
-      usbserial.print("\n");
-    }
-    if(serialDataIn.startsWith("rejoin"))                               //rejoins LoRa network with new keys (i.e. reboot)
-    {
-      joined_network = ttn.join(RETRIES, 10000);         //Join TTN network and show progress on via serial
-      if (joined_network) {
-        usbserial.print("ack\n");
-        current_state = APPS_STATE;
-      } else {
-        usbserial.print(F("error:join failed\n"));
-      }
-      //goto PERSONAL_MODE
-    }
-    if(serialDataIn.startsWith("debug"))
-    {
-      ttn.showStatus();
-    }
-    //if no USB cable is connected, stop commissioning mode
-    if(!USB_CABLE_CONNECTED)  
-    {
-      if(usbserial)
-        usbserial.end();
-      current_state = APPS_STATE;
-    }
-  }//end commissioning mode
-
-  
-  //if no network is joined, join network
-  if (!joined_network) {
-    char appEui[17];
-    ttn.getAppEui(appEui, sizeof(appEui));
-
-    /*
-     * If the appEui is 0's, the device is not commissioned.
-     * Then use the keys defined at the top of this sketch.
-     * Otherwise join using the keys programmed during commissioning.
-     */
-    if (OVERRIDE || strcmp(appEui, "0000000000000000") == 0) {
-      ttn.join(appEUI, appKey, RETRIES, 10000);
-    } else {
-      ttn.join(RETRIES, 10000);
-    }
-    joined_network = 1;
+    ttn.join(appEUI, appKey, RETRIES, 1);
+  } 
+  else 
+  {
+    ttn.join(RETRIES, 1);
   }
+  joined_network = 1;
+  set_rgb_led(0,0,0);
   
   //Start LoRa communication
 	usbserial.println(F("-- Status"));
@@ -750,9 +685,9 @@ static void read_sensors_send_lora(void)
     
   usbserial.println(F("-- Sending data"));
   joined_network = ttn.sendBytes(message.getBytes(), message.getLength(), 1, connectivity_check, txsf); 
-  connectivity_check = false;
   if(connectivity_check == true)
   {
+    connectivity_check = false;
     if(joined_network == TTN_SUCCESSFUL_RECEIVE)
     {
       //blink green led
