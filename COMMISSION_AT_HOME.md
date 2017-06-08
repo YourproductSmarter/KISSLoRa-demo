@@ -177,5 +177,5 @@ If you really want to see the graphs from the fair, you can follow the following
 --- Resetting RN module
 ```
 
-**A: **
+**A:**
 Try to switch the gadget off and back on, and re-open the serial monitor.
