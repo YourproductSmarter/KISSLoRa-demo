@@ -190,15 +190,15 @@ int main(void)
   set_rgb_led(80,80,0);
   
   //join network
-  char appEui[17];
-  ttn.getAppEui(appEui, sizeof(appEui));
+  char appEui_from_RN2483[17];
+  ttn.getAppEui(appEui_from_RN2483, sizeof(appEui_from_RN2483));
   
   /*
   * If the appEui is 0's, the device is not commissioned.
   * Then use the keys defined at the top of this sketch.
   * Otherwise join using the keys programmed during commissioning.
   */
-  if (OVERRIDE || strcmp(appEui, "0000000000000000") == 0) 
+  if (OVERRIDE || strcmp(appEui_from_RN2483, "0000000000000000") == 0) 
   {
     ttn.join(appEUI, appKey, RETRIES, 1);
   } 
@@ -208,7 +208,7 @@ int main(void)
   }
   joined_network = 1;
   set_rgb_led(0,0,0);
-  
+
   //Start LoRa communication
 	usbserial.println(F("-- Status"));
 	ttn.showStatus();			//Show RN2483 information via serial
@@ -232,20 +232,20 @@ int main(void)
         {
           set_rgb_led(0, 0, 0);
           read_sensors_send_lora();    
-          sleep(20*1000, 0);
+          sleep(60U*1000, 0);
         }
         break;//app 0
       case 1://app 1: countdown to next LoRa message (fade blue LED to off, then send message)
         {
           set_rgb_led(0, 0, 0);
-          uint16_t count = 200;
+          uint16_t count = 600;
           uint8_t intensity;
           //read sensors and send lora message
           read_sensors_send_lora();
           while(count-- && get_rotary_value() == 1)
           {
             //determine intensity
-            intensity = map(count, 0, 200, 1, 255);
+            intensity = map(count, 0, 600, 1, 255);
             //write output
             set_rgb_led(0,0,intensity);
             delay(100);  
@@ -580,7 +580,7 @@ int main(void)
     //if app is not an app where LoRa messages are sent, send a message anyway
     if(app >= 2 && app <= 9)
     {
-      if(millis() > (prev_message_at_millis + 20000))//send message every 20 seconds
+      if(millis() > (prev_message_at_millis + 60000))//send message every 60 seconds
       {
         prev_message_at_millis = millis();
         read_sensors_send_lora();
@@ -657,35 +657,8 @@ static void read_sensors_send_lora(void)
   message.addUint16(hwEui_16_bits);
   
   //Send the decoded data
-  
-  uint8_t txsf = 7;
-  uint8_t rnd = (uint8_t)random(1, 64);
-  
-  if (rnd == 1 ) {
-    txsf = 12;  // SF12
-  }
-  else if (rnd > 1  && rnd < 4  ) {
-    txsf = 11;  // SF11
-  }
-  else if (rnd > 3  && rnd < 8  ) {
-    txsf = 10;  // SF10
-  }
-  else if (rnd > 7  && rnd < 16 ) {
-    txsf = 9;  // SF9
-  }
-  else if (rnd > 15 && rnd < 32 ) {
-    txsf = 8;  // SF8
-  }
-  else {
-    txsf = 7;  // SF7
-  }
-  
-  usbserial.println(F("-- Setting Data Rate"));
-  usbserial.print(F("--- SF: "));
-  usbserial.println(txsf);
-    
   usbserial.println(F("-- Sending data"));
-  joined_network = ttn.sendBytes(message.getBytes(), message.getLength(), 1, connectivity_check, txsf); 
+  joined_network = ttn.sendBytes(message.getBytes(), message.getLength(), 1, connectivity_check, 9); 
   if(connectivity_check == true)
   {
     connectivity_check = false;
