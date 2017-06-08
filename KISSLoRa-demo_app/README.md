@@ -15,7 +15,12 @@ You can either look at the simplistic examples [here](https://github.com/Yourpro
 4. You can use SPI. Unfortunately, due to lack of pins, the SPI_SS line uses the same pin as the RXLED of the Arduino Leonardo. So either don't use USB serial during SPI or change your USB serial library.
 5. During sleep mode the timer used by millis() is not updated, you may try estMillis() instead, but this function is untested.
 
-## FAQ
+## FYI
+
+### Wat betekenen de LEDs op de gadget?
+   - De RGB led kleurt geel als de gadget probeert verbinding te maken met het LoRa netwerk. Dit duurt maximaal 12 seconden.
+   - De RGB led knippert voor 5 seconden blauw als je de gadget aan zet met de micro USB kabel verbonden.
+   - De LoRa led kleurt blauw als er een pakket data verzonden wordt naar het LoRa netwerk.
 
 ### Wat is de precieze functionaliteit van de rotary switch standen op de gadget?
 
