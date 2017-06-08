@@ -28,7 +28,7 @@
 **A.** Tof dat je enthousiast bent. Zoek de lokale community van The Things Network in jouw buurt en / of start je eigen lokale initiatief. [Link](https://www.thethingsnetwork.org/community)
 
 ### Q. Mijn vraag staat hier niet bij, help?!
-**A.** Stel je vraag op ons Forum met LoRa experts. Bijvoorbeeld in [dit topic](https://www.thethingsnetwork.org/forum/t/how-to-connect-utrecht-e-a-exhibition-kiss-lora-to-ttn/7619/4).
+**A.** Stel je vraag op ons Forum met LoRa experts. Bijvoorbeeld in [dit topic](https://www.thethingsnetwork.org/forum/t/how-to-connect-utrecht-e-a-exhibition-kiss-lora-to-ttn/7619).
 
 ### Q. Ik lees over The Things Industries en The Things Network, wat is het verschil?
 **A. The Things Network** is een stichting die samen met een wereldwijde community van 18000 mensen een open LoRa netwerk uitrolt. **The Things Industries** is een B.V. die ondersteuning biedt bij applicatieontwikkeling, grootschalige LoRa implementaties en bij het opzetten van een besloten LoRaWAN netwerk server. Lees meer over [The Things Industries](https://www.thethingsindustries.com/).
