@@ -47,7 +47,7 @@ If you already have these libraries installed, check if you have the latest vers
 
 * Go to **Sketch->Include Library->Manage Libraries**.
 
-* Search for **TheThingsNetwork** and click on **install**.
+* Search for **TheThingsNetwork** and click on **install**. You will need version 2.5.3 or newer. Please update if you have an older version.
 
 * Search for **SoftPWM** and click on **install**.
 
