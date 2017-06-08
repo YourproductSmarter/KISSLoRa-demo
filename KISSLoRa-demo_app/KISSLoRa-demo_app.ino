@@ -81,7 +81,7 @@ static const char *appKey = "4A9A507DF8EFD742BB07192B29EF8568";
 #define ttnFreqPlan   TTN_FP_EU868 // The KISS LoRa device only supports the EU frequencies
 #define ttnJoinSF     9            // We do the join on SF9
 #define ttnMessageSF  9            // The SF for all messages other than join
-  
+
 typedef struct
 {
 	int8_t acc_x = 0;
