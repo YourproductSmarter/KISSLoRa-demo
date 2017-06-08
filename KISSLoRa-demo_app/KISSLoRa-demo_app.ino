@@ -79,8 +79,7 @@ static const char *appEUI = "70B3D57EF0003A0E";
 static const char *appKey = "4A9A507DF8EFD742BB07192B29EF8568";
 
 #define ttnFreqPlan   TTN_FP_EU868 // The KISS LoRa device only supports the EU frequencies
-#define ttnJoinSF     9            // We do the join on SF9
-#define ttnMessageSF  9            // The SF for all messages other than join
+#define ttnJoinSF     9            // We do the join on SF9, but all subsequent transmissions on a (pseudo-)randomly chosen SF
 
 typedef struct
 {
@@ -657,9 +656,29 @@ static void read_sensors_send_lora(void)
   usbserial.println(hwEui_16_bits, HEX);
   message.addUint16(hwEui_16_bits);
   
-  //Send the decoded data
+  //Send the decoded data   
+  uint8_t txsf = 9;
+  uint8_t rnd = (uint8_t)random(1, 64);
+  
+  if (rnd <= 4 ) {
+    txsf = 12;  // SF12
+  }
+  else if (rnd > 3  && rnd < 16  ) {
+    txsf = 11;  // SF11
+  }
+  else if (rnd > 15  && rnd < 32  ) {
+    txsf = 10;  // SF10
+  }
+  else {
+    txsf = 9;  // SF9
+  }
+  
+  usbserial.println(F("-- Setting Data Rate"));
+  usbserial.print(F("--- SF: "));
+  usbserial.println(txsf);
+   
   usbserial.println(F("-- Sending data"));
-  joined_network = ttn.sendBytes(message.getBytes(), message.getLength(), 1, connectivity_check, ttnMessageSF); 
+  joined_network = ttn.sendBytes(message.getBytes(), message.getLength(), 1, connectivity_check, txsf); 
   if(connectivity_check == true)
   {
     connectivity_check = false;
