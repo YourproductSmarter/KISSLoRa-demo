@@ -78,8 +78,9 @@ static const bool OVERRIDE = false;
 static const char *appEUI = "70B3D57EF0003A0E";
 static const char *appKey = "4A9A507DF8EFD742BB07192B29EF8568";
 
-#define freqPlan TTN_FP_EU868
-
+#define ttnFreqPlan TTN_FP_EU868 // The KISS LoRa device only supports the EU frequencies
+#define ttnJoinSF   9            // We do the join on SF9, but all subsequent transmissions on a (pseudo-)randomly chosen SF
+  
 typedef struct
 {
 	int8_t acc_x = 0;
@@ -98,7 +99,7 @@ static void set_rgb_led(uint8_t R, uint8_t G, uint8_t B);
 static void sleep(uint32_t delay_time_ms, uint8_t rotary_value);
 
 //Global variables
-TheThingsNetwork ttn(loraSerial, usbserial, freqPlan); //Init TTN class
+TheThingsNetwork ttn(loraSerial, usbserial, ttnFreqPlan, ttnJoinSF); //Init TTN class, using SF9
 uint8_t humidity = 0;			//Humidity value in percent
 float temperature = 0;		//Temperature value in degrees Celsius
 uint16_t lux = 0;				//Light intensity in lux
