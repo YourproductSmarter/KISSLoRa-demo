@@ -1,11 +1,11 @@
 # KISS LoRa
 
-> For common questions about the KISS gadget, see [the FAQ](FAQ_NL.md).
+> For common questions about the KISS gadget, see [the FAQ](FAQ.md).
 > 
-> Voor veelgestelde vragen over de KISS gadget, zie [de FAQ](FAQ_NL.md).
+> Voor veelgestelde vragen over de KISS gadget, zie [de FAQ](FAQ.md).
 
 
-This repository contains example firmware to customise the KISS LoRa gadget from the E&A fair. If you do not want to customise your KISS gadget, but just want to get it to work with the original firmware, please see [the FAQ](FAQ_NL.md) or the [Commission at Home](COMMISSION_AT_HOME.md) document.
+This repository contains example firmware to customise the KISS LoRa gadget from the E&A fair. If you do not want to customise your KISS gadget, but just want to get it to work with the original firmware, please see [the FAQ](FAQ.md) or the [Commission at Home](COMMISSION_AT_HOME.md) document.
 
 
 ![kiss gadget](KISSLoRa.png)
