@@ -200,11 +200,11 @@ int main(void)
   */
   if (OVERRIDE || strcmp(appEui_from_RN2483, "0000000000000000") == 0) 
   {
-    ttn.join(appEUI, appKey, RETRIES, 1);
+    ttn.join(appEUI, appKey, RETRIES, 5000);  //retry "RETRIES" times, wait 5000 ms between retries
   } 
   else 
   {
-    ttn.join(RETRIES, 1);
+    ttn.join(RETRIES, 5000);//retry "RETRIES" times, wait 5000 ms between retries
   }
   joined_network = 1;
   set_rgb_led(0,0,0);
