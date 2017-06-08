@@ -171,3 +171,11 @@ If you really want to see the graphs from the fair, you can follow the following
 * At the top right, choose **Payload Formats**. Choose Payload Format **Custom**, choose **decoder**, copy the code from [here](https://raw.githubusercontent.com/YourproductSmarter/KISSLoRa-payload_decoder/master/KISSLoRa_payload_decoder.js) into the code box. Copy `2FF308A628FF03416E6E` and paste it into the **Payload** box. Click on **Test** and then on **Save payload functions**.
 * Go to `https://commissioning.thethingsnetwork.org/data/<your-application-id>` (replace the last part with the application ID your KISS gadget is registered on). You should now see some graphs, as long as your KISS gadget is sending data.
 * We do not provide support for these graphs. If it does not work, please use the [CayenneLPP example](Examples/CayenneLPP).
+
+**Q: I only see the following line in the serial monitor, and nothing more. / I see no output in the serial monitor.**
+```
+--- Resetting RN module
+```
+
+**A: **
+Try to switch the gadget off and back on, and re-open the serial monitor.
