@@ -78,8 +78,9 @@ static const bool OVERRIDE = false;
 static const char *appEUI = "70B3D57EF0003A0E";
 static const char *appKey = "4A9A507DF8EFD742BB07192B29EF8568";
 
-#define ttnFreqPlan TTN_FP_EU868 // The KISS LoRa device only supports the EU frequencies
-#define ttnJoinSF   9            // We do the join on SF9, but all subsequent transmissions on a (pseudo-)randomly chosen SF
+#define ttnFreqPlan   TTN_FP_EU868 // The KISS LoRa device only supports the EU frequencies
+#define ttnJoinSF     9            // We do the join on SF9
+#define ttnMessageSF  9            // The SF for all messages other than join
   
 typedef struct
 {
@@ -658,7 +659,7 @@ static void read_sensors_send_lora(void)
   
   //Send the decoded data
   usbserial.println(F("-- Sending data"));
-  joined_network = ttn.sendBytes(message.getBytes(), message.getLength(), 1, connectivity_check, 9); 
+  joined_network = ttn.sendBytes(message.getBytes(), message.getLength(), 1, connectivity_check, ttnMessageSF); 
   if(connectivity_check == true)
   {
     connectivity_check = false;
